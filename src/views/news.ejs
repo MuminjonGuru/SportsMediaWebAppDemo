@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Data API Demo</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header__logo">Sports Data API - Matches</div>
+    </header>
+    
+    <div class="wrapper">
+        <div class="news">
+            <% if(matches != null) { %> 
+            <% matches.forEach(function(match, index) { %> 
+                <a href="<%- match.url %>" class="news__newsBox" target="_blank">
+                    <% if(match.home_team.logo != null) { %> 
+                        <img src="<%- match.home_team.logo %>" align="left" hspace="20">
+                        <img src="<%- match.away_team.logo %>" align="left" hspace="20">
+                    <% } else { %>
+                        <img src="https://mediastack.com/site_images/mediastack_logo_footer.svg" alt="default image">
+                    <% } %> 
+                    <h3>
+                        Match ID: <%- match.match_id %>
+                    </h3>
+                    <p>
+                        Home Team: <%- match.home_team.name %>                       
+                    </p>
+                    <p>
+                        Away Team: <%- match.away_team.name %> 
+                    </p>
+                    <p>
+                        Full-Time: <%- match.stats.ft_score %>
+                    </p>
+                </a>
+            <% }) %> 
+            <% } else { %> 
+                <p>No Matches Found</p>                
+            <% } %> 
+        </div>
+    </div>
+
+</body>
+</html>
